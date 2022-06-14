@@ -212,66 +212,6 @@ class UnsupervisedPairs (ImagePairs):
         img1, img2 = self._load_pair(idx)
         return (img1, img2), dict(corres=self.get_corres(idx))
 
-'''
-TODO remove
-
-def flow2png(flow, path):
-    flow = np.clip(np.around(16*flow), -2**15, 2**15-1)
-    bytes = np.int16(flow).view(np.uint8)
-    Image.fromarray(bytes).save(path)
-    return flow / 16
-
-def png2flow(path, scale = 1):
-    try:
-        img = Image.open(path)
-        if scale != 1:
-            new_size = tuple(int(x*scale) for x in img.size)
-            img = img.resize(new_size, Image.NEAREST)
-        flow = np.asarray(img).view(np.int16)
-        return np.float32(flow) * (scale / 16)
-    except:
-        raise IOError(2, "Error loading flow for %s" % path, path)
-
-
-def imsize( img ):
-    " returns (width, height) "
-    if isinstance(img, Image.Image):
-        return img.size
-    if isinstance(img, np.ndarray):
-        assert img.ndim == 3
-        return img.shape[1::-1]
-    if isinstance(img, torch.Tensor):
-        if img.ndim == 4: img = img[0]
-        assert img.ndim == 3
-        return img.shape[2:0:-1] if img.shape[0] <= 3 else img.shape[1::-1]
-
-
-def make_grid( img ):
-    W, H = imsize(img)
-    grid = np.mgrid[:H,:W][::-1].transpose(1,2,0).astype(np.float32)
-    if isinstance(img, torch.Tensor):
-        grid = torch.from_numpy(grid).to(img)
-        if img.ndim == 4: grid = grid[None].expand(len(img), *grid.shape)
-    return grid
-
-    
-def make_aflow( img, axis=None, **infos ):
-    if axis is None:
-        if 'aflow' in infos:
-            return infos['aflow']
-        grid = make_grid( img )
-        if 'flow' in infos:
-            return infos['flow'] + grid
-        if 'homography' in infos:
-            return applyh(infos['homography'], grid)
-        raise RuntimeError(f'could not make aflow from {infos.keys()}')
-    else:
-        aflow = make_aflow(img, **infos)
-        if (axis % aflow.ndim) - aflow.ndim != -1: 
-            return aflow if aflow.shape[axis]==2 else aflow.swapaxes(-2,-1).swapaxes(-3,-2) #.transpose(2,0,1)
-        else: 
-            return aflow if aflow.shape[axis]==2 else aflow.swapaxes(-3,-2).swapaxes(-2,-1) #.transpose(1,2,0)
-'''
 
 if __name__ == '__main__':
     from datasets import *
