@@ -15,9 +15,9 @@ norm_RGB = tvf.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 
 
 class PixelDesc (nn.Module):
-    def __init__(self, path='models/PUMP_st.pt'):
+    def __init__(self, path='checkpoints/PUMP-stytrf.pt'):
         super().__init__()
-        state_dict = torch.load( path )
+        state_dict = torch.load( path, map_location='cpu' )
         self.pixel_desc = ConvMixer(output_dim=128, hidden_dim=512, depth=7, patch_size=4, kernel_size=9).eval()
         self.pixel_desc.load_state_dict(state_dict)
 
