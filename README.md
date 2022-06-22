@@ -1,7 +1,7 @@
 # PUMP: pyramidal and uniqueness matching priors for unsupervised learning of local features #
 ![image](imgs/teaser_paper.jpg)
 
-Official repository for the following [paper](https://europe.naverlabs.com/research/publications/pump-pyramidal-and-uniqueness-matching-priors-for-unsupervised-learning-of-local-features/):
+Official repository for the following [paper](https://openaccess.thecvf.com/content/CVPR2022/html/Revaud_PUMP_Pyramidal_and_Uniqueness_Matching_Priors_for_Unsupervised_Learning_of_CVPR_2022_paper.html):
 
 ```text
 @inproceedings{cvpr22_pump,
@@ -35,6 +35,11 @@ Requirements
     cd core/cuda_deepm/
     python setup.py install
     ```
+
+Online Demo
+-----------
+You can try the [online demo](https://huggingface.co/spaces/naver/PUMP) hosted at [Hugging Face](https://huggingface.co/).
+**WARNING**: this online demo runs on CPU at low image resolution (no multi-scale, no rotation), due to limited memory and computational resources. 
 
 Warping Demo
 ------------
