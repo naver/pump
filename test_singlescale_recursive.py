@@ -149,7 +149,7 @@ class Main (tss.Main):
             rec_overlap=args.rec_overlap, rec_score_thr=args.rec_score_thr, rec_fast_thr=args.rec_fast_thr,
             **options)
 
-        return tss.Main.tune_matcher(matcher, **vars(args) ).to(device)
+        return tss.Main.tune_matcher(args, matcher, device )
 
 
 if __name__ == '__main__':
