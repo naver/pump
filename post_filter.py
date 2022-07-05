@@ -32,9 +32,9 @@ def arg_parser():
 
 
 def main(args):
-    import test_singlescale as pump
+    from test_singlescale import Main as pump
     corres = np.load(args.corres)['corres']
-    imgs = tuple(map(image, pump.Main.load_images(args)))
+    imgs = tuple(map(image, pump.load_images(args)))
 
     if dbgfig('raw',args.dbg):
         show_correspondences(*imgs, corres)
@@ -47,7 +47,7 @@ def main(args):
     if dbgfig('viz',args.dbg):
         show_correspondences(*imgs, corres)
 
-    return pump.save_output( args, corres )
+    return pump.save_output( args.output, corres )
 
 
 def filter_corres( img0, img1, corres, 
